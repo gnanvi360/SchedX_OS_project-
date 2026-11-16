@@ -3,7 +3,7 @@ import { Process, SimulationResponse, FAASDecisionStep, WorkloadSummary } from '
 // In production (GitHub Pages) calls go to the hosted Render backend.
 // In local dev the Vite proxy forwards /api → http://127.0.0.1:8000.
 const IS_GH_PAGES = import.meta.env.MODE === 'production';
-const PROD_BACKEND = 'https://schedx-api.onrender.com';
+const PROD_BACKEND = 'https://schedx-os-project.onrender.com';
 const API_BASE = IS_GH_PAGES ? `${PROD_BACKEND}/api` : '/api';
 
 export async function checkBackendHealth(): Promise<boolean> {

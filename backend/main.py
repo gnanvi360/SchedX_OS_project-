@@ -332,9 +332,19 @@ app.include_router(router)
 
 
 # =========================================================================== #
-# Static File Hosting: Mount Production React Build                           #
+# Static File Hosting / Root API Info                                        #
 # =========================================================================== #
 frontend_dist_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
 if os.path.exists(frontend_dist_path):
     app.mount("/", StaticFiles(directory=frontend_dist_path, html=True), name="frontend")
+else:
+    @app.get("/")
+    def root():
+        return {
+            "status": "online",
+            "service": "CPU Scheduling Simulator Backend API",
+            "docs_url": "/docs",
+            "health_check": "/api/health",
+            "frontend_app": "https://gnanvi360.github.io/SchedX_OS_project-/"
+        }
 
